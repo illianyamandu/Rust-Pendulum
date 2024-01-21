@@ -9,6 +9,7 @@ fn main() {
 
     let win = MyWindowHandler {
         p: Pendulum::new(400.0, 0.0, 200.0),
+        p2: Pendulum::new(400.0, 0.0, 400.0),
     };
 
     window.run_loop(win);
@@ -16,6 +17,7 @@ fn main() {
 
 struct MyWindowHandler {
     p: Pendulum,
+    p2: Pendulum,
 }
 
 impl WindowHandler for MyWindowHandler {
@@ -24,6 +26,9 @@ impl WindowHandler for MyWindowHandler {
 
         self.p.update();
         self.p.draw(graphics);
+
+        self.p2.update();
+        self.p2.draw(graphics);
 
         helper.request_redraw();
     }
@@ -55,7 +60,7 @@ impl Pendulum {
             angle: 1.0,
             angular_velocity: 0.0,
             angular_acceleration: 0.0,
-            r: r,
+            r,
             m: 1.0,
             g: 1.5,
         }
